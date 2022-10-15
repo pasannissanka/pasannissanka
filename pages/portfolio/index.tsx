@@ -45,7 +45,7 @@ const Portfolio = ({ portfolios }: { portfolios: PortfolioData[] }) => {
                     {portfolio.metadata?.end}
                   </span>
                 </div>
-                <div className="flex gap-2 mb-5 pb-2 border-b">
+                <div className="flex gap-2 mb-5 pb-2 border-b flex-wrap">
                   {portfolio.metadata.tags.map((tag, idx) => (
                     <div
                       className="border rounded-full px-4 py-1 text-xs bg-gray-100"
