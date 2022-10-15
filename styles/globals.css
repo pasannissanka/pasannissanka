@@ -28,3 +28,7 @@ a {
     background: black;
   }
 }
+
+.min-h-screen-custom {
+  min-height: calc(100vh - 3rem);
+}

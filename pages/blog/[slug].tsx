@@ -10,6 +10,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import "highlight.js/styles/atom-one-dark-reasonable.css";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { getArticleFromSlug, getSlug } from "../../src/readMDX";
+import NavBarComponent from "../../components/navbar";
 
 export default function Blog({
   post: { source, frontmatter },
@@ -19,8 +20,11 @@ export default function Blog({
   return (
     <React.Fragment>
       <Head>
-        <title>{frontmatter.title} | My blog</title>
+        <title>{frontmatter.title} | Pasan Nissanka</title>
       </Head>
+      
+      <NavBarComponent />
+
       <div className="article-container">
         <h1 className="article-title">{frontmatter.title}</h1>
         <p className="publish-date">
