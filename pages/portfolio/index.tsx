@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
@@ -22,10 +23,17 @@ const Portfolio = ({ portfolios }: { portfolios: PortfolioData[] }) => {
         <div className="sm:w-1/2 w-full p-4 h-full flex sm:flex-row flex-col my-4">
           <div className="flex flex-col w-full">
             {portfolios?.map((portfolio, index) => (
-              <div className="my-10" key={index}>
-                <h1 className="text-3xl font-bold mt-4">
-                  {portfolio.metadata.title}
-                </h1>
+              <div className="mt-4" key={index}>
+                <Link href={`#${portfolio.metadata.slug}`}>
+                  <a>
+                    <h1
+                      id={portfolio.metadata.slug}
+                      className="text-3xl font-bold mt-4"
+                    >
+                      {portfolio.metadata.title}
+                    </h1>
+                  </a>
+                </Link>
                 <div className="flex my-2">
                   <span className="text-base text-gray-600">
                     {portfolio.metadata?.start}{" "}
