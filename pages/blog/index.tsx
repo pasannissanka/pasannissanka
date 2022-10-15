@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
@@ -39,7 +39,7 @@ const Blog = ({ posts }: { posts: Metadata[] }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async () => {
   const articles = await getAllArticles();
 
   articles.sort((a, b) => {
