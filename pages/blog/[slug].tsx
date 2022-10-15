@@ -9,32 +9,37 @@ import rehypeCodeTitles from "rehype-code-titles";
 import { serialize } from "next-mdx-remote/serialize";
 import "highlight.js/styles/atom-one-dark-reasonable.css";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { getArticleFromSlug, getSlug } from "../../src/readMDX";
+import { ArticleData, getArticleFromSlug, getSlug } from "../../src/readMDX";
 import NavBarComponent from "../../components/navbar";
+import { components } from "../../components/mdx/mdx_component";
 
 export default function Blog({
-  post: { source, frontmatter },
+  post: { source, metadata },
 }: {
-  post: { source: any; frontmatter: any };
+  post: ArticleData;
 }) {
   return (
     <React.Fragment>
       <Head>
-        <title>{frontmatter.title} | Pasan Nissanka</title>
+        <title>{metadata.title} | Pasan Nissanka</title>
       </Head>
-      
+
       <NavBarComponent />
 
-      <div className="article-container">
-        <h1 className="article-title">{frontmatter.title}</h1>
-        <p className="publish-date">
-          {dayjs(frontmatter.publishedAt).format("MMMM D, YYYY")} &mdash;{" "}
-          {frontmatter.readingTime}
-        </p>
-        <div className="content">
-          <MDXRemote {...source} components={{ Image }} />
+      <main className="min-h-screen-custom sm:px-16 px-2 py-0 flex-1 flex flex-col mt-12 items-center">
+        <div className="sm:w-1/2 w-full p-4 h-full flex sm:flex-row flex-col my-4">
+          <div className="flex flex-col w-full">
+            <h1 className="text-3xl my-2">{metadata.title}</h1>
+            <p className="text-sm text-gray-700 mb-4 pb-2 border-b border-gray-300">
+              {dayjs(metadata.publishedAt).format("MMMM D, YYYY")} &mdash;{" "}
+              {metadata.readingTime}
+            </p>
+            <div className="my-6">
+              <MDXRemote {...source} components={{ ...components, Image }} />
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
     </React.Fragment>
   );
 }
@@ -56,22 +61,11 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   //fetch the particular file based on the slug
   const { slug } = params;
-  const { content, frontmatter } = await getArticleFromSlug(slug);
+  const { content, metadata } = await getArticleFromSlug(slug);
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypeAutolinkHeadings,
-          {
-            properties: { className: ["anchor"] },
-          },
-          { behaviour: "wrap" },
-        ],
-        rehypeHighlight,
-        rehypeCodeTitles,
-      ],
+      rehypePlugins: [rehypeSlug, rehypeHighlight, rehypeCodeTitles],
     },
   });
 
@@ -79,8 +73,8 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     props: {
       post: {
         source: mdxSource,
-        frontmatter,
-      },
+        metadata,
+      } as ArticleData,
     },
   };
 }

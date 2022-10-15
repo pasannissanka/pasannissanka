@@ -47,7 +47,7 @@ const Home: NextPage = () => {
               </svg>
               <span>Colombo, Sri Lanka</span>
             </span>
-            <div className="flex justify-self-start items-center gap-4">
+            <div className="flex items-center gap-3 flex-wrap justify-center">
               <span className="flex items-center gap-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +110,6 @@ const Home: NextPage = () => {
           </div>
         </div>
       </main>
-
       <footer className="flex justify-center items-center flex-grow"></footer>
     </div>
   );
