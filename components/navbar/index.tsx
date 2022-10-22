@@ -18,7 +18,7 @@ const ROUTES: { href: string; title: string; alt: string }[] = [
     alt: "portfolio",
   },
   {
-    href: "https://www.dropbox.com/s/3rt38xu2025iysl/Pasan_Nissanka_CV.pdf?dl=0",
+    href: "https://www.dropbox.com/home/Resume?preview=Pasan_Nissanka_CV+%282%29.pdf",
     title: "Resume",
     alt: "cv",
   },
