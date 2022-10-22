@@ -24,7 +24,6 @@ const Home: NextPage = () => {
               height={800}
               className="rounded-full border border-gray-500 z-0"
             />
-            {/* <div>+94-077-055-0016</div> */}
           </div>
           <div className="sm:w-3/4 w-full p-2 text-center flex flex-col items-center">
             <span className="text-2xl text-gray-700 font-normal leading-relaxed ">

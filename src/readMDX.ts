@@ -21,6 +21,7 @@ export type PortfolioMetadata = Metadata & {
   start: string;
   end?: string;
   isCompleted: boolean;
+  isListed: boolean;
 };
 
 export type Article = {
@@ -134,6 +135,7 @@ export async function getAllPortfolios(): Promise<Portfolio[]> {
           start: data["start"],
           isCompleted: data["isCompleted"],
           end: data["end"] || "",
+          isListed: data["listed"] || false,
         } as PortfolioMetadata,
       },
       ...allArticles,

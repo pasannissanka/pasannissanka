@@ -23,7 +23,7 @@ const Portfolio = ({ portfolios }: { portfolios: PortfolioData[] }) => {
         <div className="sm:w-1/2 w-full p-4 h-full flex sm:flex-row flex-col my-4">
           <div className="flex flex-col w-full">
             {portfolios?.map((portfolio, index) => (
-              <div className="mt-4" key={index}>
+              <div className="my-4" key={index}>
                 <Link href={`#${portfolio.metadata.slug}`}>
                   <a>
                     <h1
@@ -77,18 +77,20 @@ export const getStaticProps: GetStaticProps = async () => {
     return 0;
   });
 
-  const portfolios = articles.map(async (article) => {
-    const mdxSource = await serialize(article.content, {
-      mdxOptions: {
-        rehypePlugins: [rehypeSlug, rehypeHighlight, rehypeCodeTitles],
-      },
-      parseFrontmatter: true,
+  const portfolios = articles
+    .filter((a) => a.metadata.isListed)
+    .map(async (article) => {
+      const mdxSource = await serialize(article.content, {
+        mdxOptions: {
+          rehypePlugins: [rehypeSlug, rehypeHighlight, rehypeCodeTitles],
+        },
+        parseFrontmatter: true,
+      });
+      return {
+        source: mdxSource,
+        metadata: article.metadata,
+      };
     });
-    return {
-      source: mdxSource,
-      metadata: article.metadata,
-    };
-  });
 
   const portfoliosData = await Promise.all(portfolios);
 

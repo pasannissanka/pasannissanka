@@ -1,6 +1,34 @@
 import Link from "next/link";
 import { useState } from "react";
 
+const ROUTES: { href: string; title: string; alt: string }[] = [
+  {
+    href: "/",
+    title: "Home",
+    alt: "home",
+  },
+  // {
+  //   href: "/blog",
+  //   title: "Blog",
+  //   alt: "blog",
+  // },
+  {
+    href: "/portfolio",
+    title: "Portfolio",
+    alt: "portfolio",
+  },
+  {
+    href: "https://www.dropbox.com/s/3rt38xu2025iysl/Pasan_Nissanka_CV.pdf?dl=0",
+    title: "Resume",
+    alt: "cv",
+  },
+  {
+    href: "/#contact-me",
+    title: "Contact Me",
+    alt: "home",
+  },
+];
+
 const NavBarComponent = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -41,31 +69,13 @@ const NavBarComponent = () => {
             </svg>
           </div>
           <div className="h-full flex flex-col items-center justify-center">
-            <Link href="/">
-              <a className="text-xl my-3 border-b border-gray-500 capitalize ">
-                Home
-              </a>
-            </Link>
-            <Link href="/blog">
-              <a className="text-xl my-3 border-b border-gray-500 capitalize">
-                Blog
-              </a>
-            </Link>
-            <Link href="/portfolio">
-              <a className="text-xl my-3 border-b border-gray-500 capitalize">
-                Portfolio
-              </a>
-            </Link>
-            <Link href="/cv">
-              <a className="text-xl my-3 border-b border-gray-500 capitalize">
-                CV
-              </a>
-            </Link>
-            <Link href="/contact-me">
-              <a className="text-xl my-3 border-b border-gray-500 capitalize">
-                Contact me
-              </a>
-            </Link>
+            {ROUTES.map((ROUTE, idx) => (
+              <Link key={idx} href={ROUTE.href}>
+                <a className="text-xl my-3 border-b border-gray-500 capitalize ">
+                  {ROUTE.title}
+                </a>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -76,21 +86,11 @@ const NavBarComponent = () => {
 
       <div className="absolute m-auto left-0 right-0 sm:visible invisible">
         <div className="text-gray-500 flex justify-center items-center capitalize">
-          <Link href="/">
-            <a className="hover:text-gray-400 px-4 border-r">Home</a>
-          </Link>
-          <Link href="/blog">
-            <a className="hover:text-gray-400 px-4 border-r">Blog</a>
-          </Link>
-          <Link href="/portfolio">
-            <a className="hover:text-gray-400 px-4 border-r">Portfolio</a>
-          </Link>
-          <Link href="/cv">
-            <a className="hover:text-gray-400 px-4 border-r">CV</a>
-          </Link>
-          <Link href="/contact-me">
-            <a className="hover:text-gray-400 px-4">Contact me</a>
-          </Link>
+          {ROUTES.map((ROUTE, idx) => (
+            <Link key={idx} href={ROUTE.href}>
+              <a className={`hover:text-gray-400 duration-300 px-4 ${idx === ROUTES.length - 1 ? '' : 'border-r'}`}>{ROUTE.title}</a>
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
