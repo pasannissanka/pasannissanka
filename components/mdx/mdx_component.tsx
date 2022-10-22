@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React, { ClassAttributes, HTMLAttributes } from "react";
-import { ImageViewer } from "react-image-viewer-dv";
 
 export const components = {
   h1: (
