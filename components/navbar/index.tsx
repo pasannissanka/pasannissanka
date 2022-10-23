@@ -26,7 +26,7 @@ const ROUTES: {
     external: false,
   },
   {
-    href: "https://www.dropbox.com/s/3hvkoz72qefgzdj/Pasan_Nissanka_CV_1.pdf?dl=0",
+    href: "https://www.dropbox.com/s/c9wgxgmu30b4h5z/Pasan_Nissanka_CV_2.pdf?dl=0",
     title: "CV",
     alt: "cv",
     external: true,
