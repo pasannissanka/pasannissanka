@@ -1,31 +1,41 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const ROUTES: { href: string; title: string; alt: string }[] = [
+const ROUTES: {
+  href: string;
+  title: string;
+  alt: string;
+  external: boolean;
+}[] = [
   {
     href: "/",
     title: "Home",
     alt: "home",
+    external: false,
   },
   // {
   //   href: "/blog",
   //   title: "Blog",
   //   alt: "blog",
+  // external: false,
   // },
   {
     href: "/portfolio",
     title: "Portfolio",
     alt: "portfolio",
+    external: false,
   },
   {
-    href: "https://www.dropbox.com/home/Resume?preview=Pasan_Nissanka_CV+%282%29.pdf",
-    title: "Resume",
+    href: "https://www.dropbox.com/s/3hvkoz72qefgzdj/Pasan_Nissanka_CV_1.pdf?dl=0",
+    title: "CV",
     alt: "cv",
+    external: true,
   },
   {
     href: "/#contact-me",
     title: "Contact Me",
     alt: "home",
+    external: false,
   },
 ];
 
@@ -70,10 +80,20 @@ const NavBarComponent = () => {
           </div>
           <div className="h-full flex flex-col items-center justify-center">
             {ROUTES.map((ROUTE, idx) => (
-              <Link key={idx} href={ROUTE.href}>
-                <a className="text-xl my-3 border-b border-gray-500 capitalize ">
-                  {ROUTE.title}
-                </a>
+              <Link key={idx} href={ROUTE.href} passHref={ROUTE.external}>
+                {ROUTE.external ? (
+                  <a
+                    className="text-xl my-3 border-b border-gray-500 capitalize "
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {ROUTE.title}
+                  </a>
+                ) : (
+                  <a className="text-xl my-3 border-b border-gray-500 capitalize ">
+                    {ROUTE.title}
+                  </a>
+                )}
               </Link>
             ))}
           </div>
@@ -87,8 +107,26 @@ const NavBarComponent = () => {
       <div className="absolute m-auto left-0 right-0 sm:visible invisible">
         <div className="text-gray-500 flex justify-center items-center capitalize">
           {ROUTES.map((ROUTE, idx) => (
-            <Link key={idx} href={ROUTE.href}>
-              <a className={`hover:text-gray-400 duration-300 px-4 ${idx === ROUTES.length - 1 ? '' : 'border-r'}`}>{ROUTE.title}</a>
+            <Link key={idx} href={ROUTE.href} passHref={ROUTE.external}>
+              {ROUTE.external ? (
+                <a
+                  className={`hover:text-gray-400 duration-300 px-4 ${
+                    idx === ROUTES.length - 1 ? "" : "border-r"
+                  }`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {ROUTE.title}
+                </a>
+              ) : (
+                <a
+                  className={`hover:text-gray-400 duration-300 px-4 ${
+                    idx === ROUTES.length - 1 ? "" : "border-r"
+                  }`}
+                >
+                  {ROUTE.title}
+                </a>
+              )}
             </Link>
           ))}
         </div>
