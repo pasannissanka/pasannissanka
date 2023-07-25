@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <div className="sm:w-3/4 w-full p-4 h-full flex sm:flex-row flex-col gap-5 items-center">
           <div className="sm:w-1/4 w-1/2 p-2 z-0 flex flex-col items-center gap-3">
             <Image
-              src="/me.jpeg"
+              src="/me2.png"
               alt="Pasan Nissanka"
               width={800}
               height={800}

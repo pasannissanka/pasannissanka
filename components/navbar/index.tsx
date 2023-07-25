@@ -13,12 +13,12 @@ const ROUTES: {
     alt: "home",
     external: false,
   },
-  // {
-  //   href: "/blog",
-  //   title: "Blog",
-  //   alt: "blog",
-  // external: false,
-  // },
+  {
+    href: "https://medium.com/@pasannissanka",
+    title: "Blog",
+    alt: "blog",
+    external: true,
+  },
   {
     href: "/portfolio",
     title: "Portfolio",
